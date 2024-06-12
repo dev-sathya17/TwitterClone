@@ -86,7 +86,10 @@ const TweetCard = () => {
             </div>
           </div>
           <div className="mt-2">
-            <div className="cursor-pointer">
+            <div
+              onClick={() => navigate("/tweet/3")}
+              className="cursor-pointer"
+            >
               <p className="mb-2 p-0">
                 sample tweet content for clone project using spring boot and
                 react
