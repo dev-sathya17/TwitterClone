@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import { Button } from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import SubscriptionModal from "../Subscription/SubscriptionModal";
 const Trending = () => {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const handleTheme = () => {
     console.log("theme");
   };
@@ -29,6 +34,7 @@ const Trending = () => {
         <Button
           variant="contained"
           sx={{ padding: "10px", paddingX: "20px", borderRadius: "25px" }}
+          onClick={handleOpen}
         >
           Get Verified
         </Button>
@@ -49,6 +55,9 @@ const Trending = () => {
             <MoreHorizIcon />
           </div>
         ))}
+      </section>
+      <section>
+        <SubscriptionModal open={open} handleClose={handleClose} />
       </section>
     </div>
   );

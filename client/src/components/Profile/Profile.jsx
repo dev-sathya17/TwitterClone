@@ -11,17 +11,21 @@ import TabPanel from "@mui/lab/TabPanel";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import TweetCard from "../Feed/TweetCard";
+import ProfileModal from "./ProfileModal";
 const Profile = () => {
   const [tabValue, setTabValue] = useState(1);
+  const [openModal, setOpenModal] = useState(false);
 
+  const handleOpen = () => setOpenModal(true);
+  const handleClose = () => setOpenModal(false);
   const navigate = useNavigate();
   const handleNavigation = () => {
     navigate(-1);
   };
 
-  const handleEditProfile = () => {
-    console.log("/edit-profile");
-  };
+  // const handleEditProfile = () => {
+  //   console.log("/edit-profile");
+  // };
   const handleFollow = () => {
     console.log("/follow");
   };
@@ -64,7 +68,7 @@ const Profile = () => {
           />
           {true ? (
             <Button
-              onClick={handleEditProfile}
+              onClick={handleOpen}
               variant="contained"
               sx={{ borderRadius: "20px" }}
             >
@@ -149,6 +153,9 @@ const Profile = () => {
             <TabPanel value="4">Likes</TabPanel>
           </TabContext>
         </Box>
+      </section>
+      <section>
+        <ProfileModal open={openModal} handleClose={handleClose} />
       </section>
     </div>
   );

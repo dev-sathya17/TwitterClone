@@ -2,17 +2,22 @@ import RepeatIcon from "@mui/icons-material/Repeat";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Avatar, Button, Menu, MenuItem } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import FavouriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavouriteIcon from "@mui/icons-material/Favorite";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import BarChartIcon from "@mui/icons-material/BarChart";
+import ReplyModal from "./ReplyModal";
 const TweetCard = () => {
   const navigate = useNavigate();
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleOpen = () => setOpenModal(true);
+  const handleCloseModal = () => setOpenModal(false);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -38,7 +43,7 @@ const TweetCard = () => {
   };
 
   return (
-    <div>
+    <>
       {/* <div className="flex items-center font-semibold text-gray-700 py-2">
         <RepeatIcon />
         <p>You Retweet</p>
@@ -104,7 +109,7 @@ const TweetCard = () => {
               <div className="flex space-x-3 items-center text-gray-600">
                 <ChatBubbleOutlineIcon
                   className="cursor-pointer"
-                  onClick={handleReply}
+                  onClick={handleOpen}
                 />
                 <p>43</p>
               </div>
@@ -154,7 +159,10 @@ const TweetCard = () => {
           </div>
         </div>
       </div>
-    </div>
+      <section>
+        <ReplyModal open={openModal} handleClose={handleCloseModal} />
+      </section>
+    </>
   );
 };
 
